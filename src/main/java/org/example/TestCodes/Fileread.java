@@ -1,13 +1,13 @@
 package org.example.TestCodes;
 import java.io.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+
 public class Fileread {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //StringBuilder builder = new StringBuilder();
         String path = "D:\\code\\Java\\Scaler\\src\\main\\java\\org\\example\\TestCodes\\Testfile.txt";
+        String outfileName="D:\\code\\Java\\Scaler\\src\\main\\java\\org\\example\\TestCodes\\Outfile.txt";
+        BufferedWriter writer = new BufferedWriter(new FileWriter(outfileName));
         try (
                 BufferedReader br
                         = new BufferedReader(new FileReader(path))) {
@@ -15,15 +15,19 @@ public class Fileread {
             // Declaring a new string
             String str;
 
-            // It holds true till threre is content in file
             while ((str = br.readLine()) != null) {
 
                 // Printing the file data
                 String sep=":";
                 int pos=str.indexOf(sep);
-                System.out.println(str.substring(pos+sep.length()));
-               // System.out.println("debug");
+                String s2=str.substring(pos+sep.length());
+                System.out.println(s2);
+                writer.write(s2);
+                writer.newLine();
+
+
             }
+                writer.close();
         }
 
         // Catch block to handle the exceptions
